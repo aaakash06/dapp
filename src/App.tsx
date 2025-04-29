@@ -9,6 +9,7 @@ import {
   WalletDisconnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
+import { RequestAirdrop } from "./screens/RequestAirdrop";
 import { clusterApiUrl } from "@solana/web3.js";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -22,11 +23,24 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <WalletMultiButton />
-            <WalletDisconnectButton />
+          <div className="flex flex-col items-center justify-center h-screen w-screen">
+            <div className="container flex flex-col items-center justify-center w-full gap-2">
+              <>
+                <div className="flex justify-between gap-2">
+                  <WalletMultiButton
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-white hidden"
+                    style={{
+                      backgroundColor: "blue",
+                      color: "white",
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                  <WalletDisconnectButton className="bg-red-500 text-white px-4 py-2 rounded-md" />
+                </div>
+                <RequestAirdrop />
+              </>
+            </div>
           </div>
-          {/* <RequestAirdrop /> */}
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
